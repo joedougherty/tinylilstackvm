@@ -9,7 +9,7 @@ This series is a great read on the topic -- _would highly recommend_!
 Supported Instructions
 ======================
 
-**Note:** "TOS" here means "top of stack".
+**NOTE:** "TOS" here means "top of stack".
 
 
 | Instruction | Argument(s)         | Effects                                                   |
