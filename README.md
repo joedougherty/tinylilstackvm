@@ -16,8 +16,8 @@ Supported Instructions
 | `DUP`       | n/a                 | Duplicate TOS and push on TOS                             |
 | `HALT`      | n/a                 | Stops the program                                         |    
 | `NOT`       | n/a                 | Negates _b_ on TOS                                        |
-| `AND`       | n/a                 | Pushes logical AND of _a_ and _b_                         |
-| `OR`        | n/a                 | Pushes logical OR of _a_ and _b_                          |
+| `AND`       | n/a                 | Pushes logical AND of _a_ and _b_ on TOS                  |
+| `OR`        | n/a                 | Pushes logical OR of _a_ and _b_ on TOS                   |
 | `ADD`       | n/a                 | Pushes _b_ + _a_ on TOS                                   |
 | `SUB`       | n/a                 | Pushes _b_ - _a_ on TOS                                   |
 | `MUL`       | n/a                 | Pushes _b_ * _a_ on TOS                                   |   
