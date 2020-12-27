@@ -1,0 +1,10 @@
+# A simple program:
+PUSH 1
+PUSH 2
+CALL addThem
+HALT
+
+# A simple function that sums the given arguments
+addThem:
+  ADD
+  RET
