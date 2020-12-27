@@ -1,25 +1,24 @@
 PUSH  6		# compute the 6th fibonacci number		
-STORE 2		
+STORE 0		
 
-CALL initfib
+PUSH  1     # Push the first two 
+PUSH  1     # fibs on the stack
 
-LOAD  2
-
-PUSH  1
-PUSH  1
-
-SUB
-STORE 2
-
+CALL  nextfib
+LOAD  0
 PUSH  0
 ISEQ
-JIF   6
+JIF   4
+
+LOAD  0
+SUB
+STORE 0
 
 HALT
 
 nextfib:
+  SWAP
   DUP
-  ROT
+  OVER
   ADD
-  # TODO ... something totally sweet.
   RET
