@@ -120,7 +120,7 @@ class CPU:
 
     def get_next_word_from_program(self, err_msg=""):
         if self.instruction_address >= len(self.program):
-            raise Exception(err_msg)
+            raise RunTimeError(err_msg)
 
         next_word = self.program[self.instruction_address]
         self.instruction_address += 1
@@ -256,7 +256,7 @@ class CPU:
 
     def step(self):
         if self.halted:
-            raise("Cannot step while halted")
+            raise RuntTimeError("Cannot step while halted")
 
         next_instruction = self.get_next_word_from_program(
             err_msg="""Should have a next instruction"""
