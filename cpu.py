@@ -98,6 +98,7 @@ class CPU:
             "PUSH": self.push,
             "POP": self.pop,
             "DUP": self.dup,
+            "ROT": self.rotate,
             "NOT": self._not,
             "AND": self._and,
             "OR": self._or,
@@ -156,6 +157,12 @@ class CPU:
 
     def dup(self):
         self.stack.push(self.stack.peek())
+
+    def rotate(self):
+        c, b, a = self.stack.pop(), self.stack.pop(), self.stack.pop()
+        self.stack.push(b)
+        self.stack.push(a)
+        self.stack.push(c)
 
     def _binary_op_args(self, op=""):
         if self.stack.height() < 2:

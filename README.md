@@ -17,6 +17,7 @@ Supported Instructions
 | `PUSH`      | _n_ (int)           | Push _n_ on TOS                                           |   
 | `POP`       | n/a                 | Pops the TOS                                              |
 | `DUP`       | n/a                 | Duplicate TOS and push on TOS                             |
+| `ROT`       | n/a                 | Rotate top 3 elements on stack. ( 1 2 3 ) -> ( 2 3 1 )    |
 | `HALT`      | n/a                 | Stops the program                                         |    
 | `NOT`       | n/a                 | Negates _b_ on TOS                                        |
 | `AND`       | n/a                 | Pushes logical AND of _a_ and _b_ on TOS                  |

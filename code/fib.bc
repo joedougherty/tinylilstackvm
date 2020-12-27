@@ -1,0 +1,25 @@
+PUSH  6		# compute the 6th fibonacci number		
+STORE 2		
+
+CALL initfib
+
+LOAD  2
+
+PUSH  1
+PUSH  1
+
+SUB
+STORE 2
+
+PUSH  0
+ISEQ
+JIF   6
+
+HALT
+
+nextfib:
+  DUP
+  ROT
+  ADD
+  # TODO ... something totally sweet.
+  RET

@@ -1,4 +1,4 @@
-from parser import parse_file, parse_line
+from bc_parser import parse_file, parse_line
 
 
 def test_maxfun_bc():

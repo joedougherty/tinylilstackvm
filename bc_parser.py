@@ -1,17 +1,7 @@
-def parse_file(fname):
-    with open(fname) as f:
-        file_contents = f.readlines()
-    
-    instructions = []
-    for line in file_contents:
-        instructions += parse_line(line)
-
-    return link(instructions)
-
-
 def parse_line(l):
     agg = []
-    for token in l.split(' '):
+    line = l.replace('\t', ' ')
+    for token in line.split(' '):
         token = token.strip('\n')
 
         if token != '#':
@@ -28,6 +18,16 @@ def parse_line(l):
     return agg
 
 
+def parse_file(fname):
+    with open(fname) as f:
+        file_contents = f.readlines()
+    
+    instructions = []
+    for line in file_contents:
+        instructions += parse_line(line)
+
+    return instructions
+
 ### LINKING ###
 def link(instructions):
     while index_label(instructions) != dict():
@@ -38,10 +38,12 @@ def link(instructions):
 def resolve_label(instructions, label_index):
     agg = []
     for elem in instructions:
-        elem_c = f'''{elem}:'''
-        if isinstance(elem, str) and elem in label_index.keys():
-            agg.append(label_index[elem])
-        elif isinstance(elem, str) and elem.endswith(':'):
+        label = label_index['identifier']
+        label_c = f'''{label}:'''
+
+        if isinstance(elem, str) and elem == label:
+            agg.append(label_index['index'])
+        elif isinstance(elem, str) and elem == label_c:
             continue
         else:
             agg.append(elem)
@@ -52,7 +54,8 @@ def index_label(insts):
     label_index = dict()
     for idx, item in enumerate(insts):
         if isinstance(item, str) and item.endswith(':'):
-            label_index[item.strip(':')] = idx
+            label_index['identifier'] = item.strip(':')
+            label_index['index'] = idx
             return label_index
 
     return dict()

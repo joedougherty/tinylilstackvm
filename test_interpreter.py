@@ -1,5 +1,5 @@
 from cpu import CPU
-from parser import parse_file
+from bc_parser import parse_file
 
 
 def test_addthem_exec():
