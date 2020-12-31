@@ -128,14 +128,11 @@ class CPU:
 
     def decode_instruction(self, instruction):
         if instruction.endswith(':'):
-            # labels are noops
-            return
-
-        if instruction not in self.builtin_ops:
+            return # labels are noops
+        elif instruction not in self.builtin_ops:
             raise RunTimeError(f"""Unknown instruction: {instruction}""")
-
-        op = self.builtin_ops.get(instruction)
-        op()
+        else:
+            self.builtin_ops.get(instruction).__call__()
 
     def halt(self):
         self.halted = True
