@@ -140,14 +140,9 @@ class CPU:
     def halt(self):
         self.halted = True
 
-    def _unary_op_arg(self, op=""):
+    def _unary_op_arg(self, op):
         if self.stack.height() < 1:
-            if op:
-                msg = f"""Not enough items on stack for operation: {op}"""
-            else:
-                msg = f"""Not enough items on stack"""
-
-            raise StackUnderflowError(msg)
+            raise StackUnderflowError(f"""Not enough items on stack for operation: {op}""")
 
         return self.stack.pop()
 
@@ -172,14 +167,9 @@ class CPU:
     def over(self):
         self.stack.push(self.stack.peek[-2])
 
-    def _binary_op_args(self, op=""):
+    def _binary_op_args(self, op):
         if self.stack.height() < 2:
-            if op:
-                msg = f"""Not enough items on stack for operation: {op}"""
-            else:
-                msg = f"""Not enough items on stack"""
-
-            raise StackUnderflowError(msg)
+            raise StackUnderflowError(f"""Not enough items on stack for operation: {op}""")
 
         return (self.stack.pop(), self.stack.pop())
 
