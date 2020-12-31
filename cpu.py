@@ -118,6 +118,8 @@ class CPU:
         }
 
     def get_next_word_from_program(self, err_msg=""):
+        print(self.instruction_address)
+        print(len(self.program))
         if self.instruction_address >= len(self.program):
             raise Exception(err_msg)
 
