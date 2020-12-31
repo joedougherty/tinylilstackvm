@@ -9,9 +9,9 @@ def parse_program(fname):
     return link(instructions)
 
 
-def parse_line(l):
+def parse_line(line):
     agg = []
-    line = l.replace('\t', ' ')
+    line = line.replace('\t', ' ')
     for token in line.split(' '):
         token = token.strip('\n')
 
@@ -29,34 +29,23 @@ def parse_line(l):
     return agg
 
 
-### LINKING ###
 def link(instructions):
-    while index_label(instructions) != dict():
-        instructions = resolve_label(instructions, index_label(instructions))
-    return instructions
-
-
-def resolve_label(instructions, label_index):
-    agg = []
-    for elem in instructions:
-        label = label_index['identifier']
-        label_c = f'''{label}:'''
-
-        if isinstance(elem, str) and elem == label:
-            agg.append(label_index['index'])
-        elif isinstance(elem, str) and elem == label_c:
-            continue
+    symbol_table = generate_symbol_table(instructions)
+    
+    resolved_instructions = []
+    for inst in instructions:
+        if inst in symbol_table.keys():
+            resolved_instructions.append(symbol_table[inst])
         else:
-            agg.append(elem)
-    return agg
+            resolved_instructions.append(inst)
 
+    return resolved_instructions
+            
 
-def index_label(insts):
-    label_index = dict()
-    for idx, item in enumerate(insts):
-        if isinstance(item, str) and item.endswith(':'):
-            label_index['identifier'] = item.strip(':')
-            label_index['index'] = idx
-            return label_index
+def generate_symbol_table(instructions):
+    symbol_table = dict()
+    for idx, elem in enumerate(instructions):
+        if isinstance(elem, str) and elem.endswith(':'):
+            symbol_table[elem.strip(':')] = idx 
 
-    return dict()
+    return symbol_table
