@@ -1,3 +1,14 @@
+def parse_file(fname):
+    with open(fname) as f:
+        file_contents = f.readlines()
+    
+    instructions = []
+    for line in file_contents:
+        instructions += parse_line(line)
+
+    return link(instructions)
+
+
 def parse_line(l):
     agg = []
     line = l.replace('\t', ' ')
@@ -17,16 +28,6 @@ def parse_line(l):
             break
     return agg
 
-
-def parse_file(fname):
-    with open(fname) as f:
-        file_contents = f.readlines()
-    
-    instructions = []
-    for line in file_contents:
-        instructions += parse_line(line)
-
-    return instructions
 
 ### LINKING ###
 def link(instructions):
