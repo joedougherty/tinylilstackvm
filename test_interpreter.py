@@ -1,12 +1,22 @@
 from cpu import CPU
-from bc_parser import parse_file
+from tinylilparser import parse_program
 
 
 def test_addthem_exec():
-    instructions = parse_file('code/addthem.bc')
+    instructions = parse_program('code/addthem.bc')
 
     cpu = CPU(instructions)
     cpu.run()
 
     assert cpu.halted == True
     assert cpu.stack.peek() == 3
+
+
+def test_maxfun_exec():
+    instructions = parse_program('code/maxfun.bc')
+
+    cpu = CPU(instructions)
+    cpu.run()
+
+    assert cpu.halted == True
+    assert cpu.stack.peek() == 6

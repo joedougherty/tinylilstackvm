@@ -135,6 +135,9 @@ class CPU:
         op = self.builtin_ops.get(instruction)
         op()
 
+    def halt(self):
+        self.halted = True
+
     def _unary_op_arg(self, op=""):
         if self.stack.height() < 1:
             if op:

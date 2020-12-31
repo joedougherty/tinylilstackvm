@@ -1,4 +1,4 @@
-from bc_parser import parse_file, parse_line
+from tinylilparser import parse_program
 
 
 def test_maxfun_bc():
@@ -23,5 +23,5 @@ def test_maxfun_bc():
         "RET"
     ]
 
-    assert instructions == parse_file('code/maxfun.bc')
+    assert instructions == parse_program('code/maxfun.bc')
 

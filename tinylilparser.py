@@ -1,4 +1,4 @@
-def parse_file(fname):
+def parse_program(fname):
     with open(fname) as f:
         file_contents = f.readlines()
     
