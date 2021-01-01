@@ -9,11 +9,15 @@ This series is a great read on the topic -- _would highly recommend_!
 Supported Instructions
 ======================
 
-* **"TOS"** means "top of stack".
-* _a_, _b_, _c_ refer to the three top-most items on the stack.
-  * _a_: the top-most item on the stack
-  * _b_: the item below _a_
-  * _c_: the item below _b_
+Please note:
+
+**"TOS"** means "top of stack".
+
+_a_, _b_, _c_ refer to the three top-most items on the stack.
+
+* _a_: the top-most item on the stack
+* _b_: the item below _a_
+* _c_: the item below _b_
 
 
 | Instruction | Argument(s)         | Action                                                              |
