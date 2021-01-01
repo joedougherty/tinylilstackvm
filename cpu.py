@@ -40,6 +40,7 @@ ADDITIONS:
   - ROT
   - JNZ
   - ISLT
+  - ISLE
   - JGT
   - JGE
   - JLT
