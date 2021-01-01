@@ -13,7 +13,7 @@ Please note:
 
 **"TOS"** means "top of stack".
 
-_a_, _b_, _c_ refer to the three top-most items on the stack.
+_a_, _b_, and _c_ refer to the three top-most items on the stack.
 
 * _a_: the top-most item on the stack
 * _b_: the item below _a_
