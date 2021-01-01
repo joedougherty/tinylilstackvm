@@ -29,3 +29,13 @@ def test_countdown_exec():
     cpu.run()
 
     assert cpu.halted == True
+
+
+def test_noop_exec():
+    instructions = parse_program('code/noop.bc')
+
+    cpu = CPU(instructions)
+    cpu.run()
+
+    assert cpu.halted == True
+    assert cpu.steps == 1

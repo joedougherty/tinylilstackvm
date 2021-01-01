@@ -4,7 +4,7 @@ JMP loopStart
 
 loopStart:
   DUP
-  PUSH 1
+  PUSH 5
   ISGT
   JNZ loopExit
   PUSH 1 

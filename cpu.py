@@ -101,6 +101,7 @@ class CPU:
         self.instruction_address = 0
         self.stack = Stack()
         self.halted = False
+        self.steps = 0
 
         self.frame_stack = Stack()
         self.frame_stack.push(Frame(0))
@@ -307,7 +308,8 @@ class CPU:
     def step(self):
         if self.halted:
             raise RuntTimeError("Cannot step while halted")
-
+        
+        self.steps += 1
         next_instruction = self.get_next_word_from_program(
             err_msg="""Should have a next instruction"""
         )
