@@ -258,50 +258,26 @@ class CPU:
             self.instruction_address = address
 
     def jgt(self):
-        testval = self.get_next_work_from_program(
-            err_msg="""Should have a value to test for JGT"""
-        )
-        address = self.get_next_word_from_program(
-            err_msg="""Should have an address to jump to"""
-        )
-        self.stack.push(testval)
-        self.isgt()
-        if bool(self.stack.pop()) == True:
-            self.instruction_address = address
+        self._jmp_on_cond("JGT", self.isgt)
 
     def jge(self):
-        testval = self.get_next_work_from_program(
-            err_msg="""Should have a value to test for JGE"""
-        )
-        address = self.get_next_word_from_program(
-            err_msg="""Should have an address to jump to"""
-        )
-        self.stack.push(testval)
-        self.isge()
-        if bool(self.stack.pop()) == True:
-            self.instruction_address = address
+        self._jmp_on_cond("JGE", self.isge)
 
     def jlt(self):
-        testval = self.get_next_work_from_program(
-            err_msg="""Should have a value to test for JGT"""
-        )
-        address = self.get_next_word_from_program(
-            err_msg="""Should have an address to jump to"""
-        )
-        self.stack.push(testval)
-        self.islt()
-        if bool(self.stack.pop()) == True:
-            self.instruction_address = address
+        self._jmp_on_cond("JLT", self.islt)
 
     def jle(self):
+        self._jmp_on_cond("JLE", self.isle)
+
+    def _jmp_on_cond(self, opname, op):
         testval = self.get_next_work_from_program(
-            err_msg="""Should have a value to test for JGT"""
+            err_msg=f"""Should have a value to test for {opname}"""
         )
         address = self.get_next_word_from_program(
-            err_msg="""Should have an address to jump to"""
+            err_msg=f"""Should have an address to jump to for {opname}"""
         )
         self.stack.push(testval)
-        self.isle()
+        op.__call__()
         if bool(self.stack.pop()) == True:
             self.instruction_address = address
 
