@@ -9,20 +9,24 @@ This series is a great read on the topic -- _would highly recommend_!
 Supported Instructions
 ======================
 
-**NOTE:** "TOS" here means "top of stack".
+* **"TOS"** means "top of stack".
+* _a_, _b_, _c_ refer to the three top-most items on the stack.
+  * _a_: the top-most item on the stack
+  * _b_: the item below _a_
+  * _c_: the item below _b_
 
 
-| Instruction | Argument(s)         | Action                                                        |
-| ----------- | ------------------- | ------------------------------------------------------------- |
-| `PUSH`      | _n_ (int)           | Pushes _n_ on TOS                                             |   
-| `POP`       | n/a                 | Pops the TOS                                                  |
-| `DUP`       | n/a                 | Duplicates TOS and push on TOS                                |
-| `ROT`       | n/a                 | Rotates top 3 elements on stack  ( 1 2 3 ) -> ( 2 3 1 )       |
+| Instruction | Argument(s)         | Action                                                              |
+| ----------- | ------------------- | ------------------------------------------------------------------- |
+| `PUSH`      | _n_ (int)           | Pushes _n_ on TOS                                                   |   
+| `POP`       | n/a                 | Pops the TOS                                                        |
+| `DUP`       | n/a                 | Duplicates TOS and pushes on TOS                                    |
+| `ROT`       | n/a                 | Rotates top 3 elements on stack  ( _a_ _b_ _c_ ) -> ( _b_ _c_ _a_ ) |
 | `OVER`      | n/a                 | Copies the element below TOS and pushes on TOS                |
 | `HALT`      | n/a                 | Stops the program                                             |     
-| `NOT`       | n/a                 | Negates _b_ on TOS                                            |
-| `AND`       | n/a                 | Pushes logical AND of _a_ and _b_ on TOS                      |
-| `OR`        | n/a                 | Pushes logical OR of _a_ and _b_ on TOS                       |
+| `NOT`       | n/a                 | Negates TOS                                                   |
+| `AND`       | n/a                 | Pushes logical AND of _b_ and _a_ on TOS                      |
+| `OR`        | n/a                 | Pushes logical OR of _b_ and _a_ on TOS                       |
 | `ADD`       | n/a                 | Pushes _b_ + _a_ on TOS                                       |
 | `SUB`       | n/a                 | Pushes _b_ - _a_ on TOS                                       |
 | `MUL`       | n/a                 | Pushes _b_ * _a_ on TOS                                       |   
