@@ -147,10 +147,11 @@ class CPU:
     def decode_instruction(self, instruction):
         if instruction.endswith(':'):
             return # labels are noops
-        elif instruction not in self.builtin_ops:
+
+        if instruction not in self.builtin_ops:
             raise RunTimeError(f"""Unknown instruction: {instruction}""")
-        else:
-            self.builtin_ops.get(instruction).__call__()
+
+        self.builtin_ops.get(instruction).__call__()
 
     def halt(self):
         self.halted = True
@@ -247,15 +248,15 @@ class CPU:
         address = self.get_next_word_from_program(
             err_msg="""Should have an address to jump to"""
         )
-        if bool(self.stack.pop()) == True:
-            self.instruction_address = address
+        tos = bool(self.stack.pop()) 
+        self.instruction_address = (self.instruction_address, address)[tos]
 
     def jnz(self):
         address = self.get_next_word_from_program(
             err_msg="""Should have an address to jump to"""
         )
-        if bool(self.stack.pop()) == False:
-            self.instruction_address = address
+        tos = bool(self.stack.pop()) 
+        self.instruction_address = (address, self.instruction_address)[tos]
 
     def jgt(self):
         self._jmp_on_cond("JGT", self.isgt)
@@ -278,8 +279,9 @@ class CPU:
         )
         self.stack.push(testval)
         op.__call__()
-        if bool(self.stack.pop()) == True:
-            self.instruction_address = address
+        tos = bool(self.stack.pop()) 
+        next_address = (self.instruction_address, address)[tos]
+        self.instruction_address = next_address
 
     def load(self):
         current_frame = self.frame_stack.peek()
