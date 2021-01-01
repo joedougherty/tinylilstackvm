@@ -39,6 +39,27 @@ Supported Instructions
 
 
 
+Example
+=======
+
+
+    # Countdown from 10 to 1
+    PUSH 10
+    JMP loopStart
+
+    loopStart:
+      DUP
+      PUSH 1
+      ISGT
+      JNZ loopExit
+      PUSH 1 
+      SUB
+      JMP loopStart
+
+    loopExit:
+      HALT
+
+
 Tests
 =====
 

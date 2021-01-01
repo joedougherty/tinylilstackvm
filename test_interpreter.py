@@ -20,3 +20,12 @@ def test_maxfun_exec():
 
     assert cpu.halted == True
     assert cpu.stack.peek() == 6
+
+
+def test_countdown_exec():
+    instructions = parse_program('code/countdown.bc')
+
+    cpu = CPU(instructions)
+    cpu.run()
+
+    assert cpu.halted == True

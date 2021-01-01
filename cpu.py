@@ -27,12 +27,23 @@ https://andreabergia.com/stack-based-virtual-machines-4/
 
 https://andreabergia.com/stack-based-virtual-machines-5/
 
-    ???
+  - Label support
 
 https://andreabergia.com/stack-based-virtual-machines-6/
 
   - CALL
   - RET
+
+ADDITIONS:
+
+  - OVER
+  - ROT
+  - JNZ
+  - ISLT
+  - JGT
+  - JGE
+  - JLT
+  - JLE
 
 """
 
@@ -108,10 +119,17 @@ class CPU:
             "MUL": self.mul,
             "DIV": self.div,
             "ISEQ": self.iseq,
-            "ISGE": self.isge,
             "ISGT": self.isgt,
+            "ISGE": self.isge,
+            "ISLT": self.islt,
+            "ISLE": self.isle,
             "JMP": self.jmp,
             "JIF": self.jif,
+            "JNZ": self.jnz,
+            "JGT": self.jgt,
+            "JGE": self.jge,
+            "JLT": self.jlt,
+            "JLE": self.jle,
             "STORE": self.store,
             "LOAD": self.load,
             "CALL": self._call,
@@ -211,6 +229,14 @@ class CPU:
         a, b = self._binary_op_args("ISGT")
         self.stack.push(int(b > a))
 
+    def islt(self):
+        a, b = self._binary_op_args("ISLT")
+        self.stack.push(int(b < a))
+
+    def isle(self):
+        a, b = self._binary_op_args("ISLE")
+        self.stack.push(int(b <= a))
+
     def jmp(self):
         address = self.get_next_word_from_program(
             err_msg="""Should have an address to jump to"""
@@ -221,6 +247,61 @@ class CPU:
         address = self.get_next_word_from_program(
             err_msg="""Should have an address to jump to"""
         )
+        if bool(self.stack.pop()) == True:
+            self.instruction_address = address
+
+    def jnz(self):
+        address = self.get_next_word_from_program(
+            err_msg="""Should have an address to jump to"""
+        )
+        if bool(self.stack.pop()) == False:
+            self.instruction_address = address
+
+    def jgt(self):
+        testval = self.get_next_work_from_program(
+            err_msg="""Should have a value to test for JGT"""
+        )
+        address = self.get_next_word_from_program(
+            err_msg="""Should have an address to jump to"""
+        )
+        self.stack.push(testval)
+        self.isgt()
+        if bool(self.stack.pop()) == True:
+            self.instruction_address = address
+
+    def jge(self):
+        testval = self.get_next_work_from_program(
+            err_msg="""Should have a value to test for JGE"""
+        )
+        address = self.get_next_word_from_program(
+            err_msg="""Should have an address to jump to"""
+        )
+        self.stack.push(testval)
+        self.isge()
+        if bool(self.stack.pop()) == True:
+            self.instruction_address = address
+
+    def jlt(self):
+        testval = self.get_next_work_from_program(
+            err_msg="""Should have a value to test for JGT"""
+        )
+        address = self.get_next_word_from_program(
+            err_msg="""Should have an address to jump to"""
+        )
+        self.stack.push(testval)
+        self.islt()
+        if bool(self.stack.pop()) == True:
+            self.instruction_address = address
+
+    def jle(self):
+        testval = self.get_next_work_from_program(
+            err_msg="""Should have a value to test for JGT"""
+        )
+        address = self.get_next_word_from_program(
+            err_msg="""Should have an address to jump to"""
+        )
+        self.stack.push(testval)
+        self.isle()
         if bool(self.stack.pop()) == True:
             self.instruction_address = address
 
