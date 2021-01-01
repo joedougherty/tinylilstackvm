@@ -280,8 +280,7 @@ class CPU:
         self.stack.push(testval)
         op.__call__()
         tos = bool(self.stack.pop()) 
-        next_address = (self.instruction_address, address)[tos]
-        self.instruction_address = next_address
+        self.instruction_address = (self.instruction_address, address)[tos]
 
     def load(self):
         current_frame = self.frame_stack.peek()
