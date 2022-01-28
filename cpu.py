@@ -273,7 +273,7 @@ class CPU:
         self._jmp_on_cond("JLE", self.isle)
 
     def _jmp_on_cond(self, opname, op):
-        testval = self.get_next_work_from_program(
+        testval = self.get_next_word_from_program(
             err_msg=f"""Should have a value to test for {opname}"""
         )
         address = self.get_next_word_from_program(
